@@ -46,7 +46,7 @@ java -jar mock.jar
 访问此路径，开始你的Mock之旅。
 
 ```text
-http://localhost:8080/static/index.html
+http://localhost:8990/static/index.html
 ```
 
 ## 快速启动·其二
@@ -66,7 +66,7 @@ http://localhost:8080/static/index.html
 如果你下载`static`文件夹放到启动目录的话可以看到管理页面
 
 ```text
-http://localhost:8080/mock/static/index.html
+http://localhost:8990/mock/static/index.html
 ```
 
 ## 引擎摘要

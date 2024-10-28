@@ -5,5 +5,5 @@
 即可访问简易管理页面
 
 ```text
-http://localhost:8080/mock/static/index.html
+http://localhost:8990/mock/static/index.html
 ```

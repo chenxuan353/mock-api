@@ -13,4 +13,4 @@ ${pathVariable.msg}
 
 测试参考路径
 
-http://localhost:8080/example/template/txt/路径参数?name=名称&msg=Get消息
+http://localhost:8990/example/template/txt/路径参数?name=名称&msg=Get消息
