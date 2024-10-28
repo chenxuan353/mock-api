@@ -1,0 +1,42 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#external-frame {
+    width: 100%;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    overflow: hidden;
+    vertical-align: bottom;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.el-aside {
+    background-color: #545c64
+}
+
+.el-menu-vertical-side:not(.el-menu--collapse) {
+    width: 200px;
+    min-height: 300px;
+}
+
+.el-main {
+    background-color: #E9EEF3;
+    padding: 0;
+}
+
+.el-menu {
+    border-right: 1px #E9EEF3;
+}
+
+body>.el-container {
+    margin-bottom: 40px;
+}

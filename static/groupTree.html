@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mock - 响应树</title>
+    <link rel="stylesheet" href="vendor/element-ui@2.15.14/index.css">
+    <link rel="stylesheet" href="css/normal.css">
+</head>
+
+<body>
+    <div id="app">
+        <div class="contentBox">
+            <div :style="'visibility: visible;'" style="visibility: hidden;">
+                <h1>……？</h1>
+                <p>总要留点进步空间</p>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="vendor/vue@2.7.16/vue.js"></script>
+<script src="vendor/element-ui@2.15.14/index.js"></script>
+<script src="vendor/axios@1.7.7/axios.min.js"></script>
+<script>
+    axios.defaults.headers.common['MockVersion'] = "v1";
+    new Vue({
+        el: '#app',
+        data() {
+            return {
+
+            };
+        },
+        mounted() {
+
+        },
+        methods: {
+
+        },
+    })
+</script>
+<style>
+    .contentBox {
+        width: "100%";
+        padding: 30px;
+        background-color: white;
+        min-height: 300px;
+    }
+</style>
+</html>

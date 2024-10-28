@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Mock</title>
+    <link rel="stylesheet" href="vendor/element-ui@2.15.14/index.css">
+    <link rel="stylesheet" href="css/normal.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+    <div id="app" :style="'visibility: visible;'" style="visibility: hidden;">
+        <el-container>
+            <el-aside width="auto">
+                <el-menu :default-active="selectKey + ''" class="el-menu-vertical-side" :collapse="isCollapse"
+                    background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" @select="menuSelect">
+                    <el-menu-item v-for="(menu, index) in menuList" :key="menu.title" :index="index + ''">
+                        <i :class="menu.icon"></i>
+                        <span slot="title">{{ menu.title }}</span>
+                    </el-menu-item>
+                </el-menu>
+            </el-aside>
+            <el-container>
+                <el-header style="padding: 10px;">
+                    <el-button :icon="collapseIcon" @click="isCollapse=!isCollapse" plain></el-button>
+                    <span style="padding-left: 10px;">{{ title }}</span>
+                </el-header>
+                <el-main>
+                    <div style="height: 100%;width: 100%;overflow-y: auto;">
+                        <iframe :src="iframeSrc" id="external-frame">
+                        </iframe>
+                    </div>
+                </el-main>
+            </el-container>
+        </el-container>
+    </div>
+</body>
+<script src="vendor/vue@2.7.16/vue.js"></script>
+<script src="vendor/element-ui@2.15.14/index.js"></script>
+<script src="js/index.js"></script>
+</html>

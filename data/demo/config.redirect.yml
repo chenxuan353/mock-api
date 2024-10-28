@@ -1,0 +1,5 @@
+name: 重定向
+des: 重定向
+response:
+    processType: Redirect302
+    body: "https://github.com/chenxuan353"

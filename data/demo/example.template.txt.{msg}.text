@@ -1,0 +1,16 @@
+可以通过模版从请求中读取数据
+
+比如路径参数：${msg}
+比如get参数：${name} - 试着提供一下
+
+当然，有可能会出现一些冲突。
+
+这样可以限定参数来源
+
+${params.msg}
+
+${pathVariable.msg}
+
+测试参考路径
+
+http://localhost:8080/example/template/txt/路径参数?name=名称&msg=Get消息

@@ -1,0 +1,86 @@
+name: 配置Demo
+des: 配置文件的示例
+# 是否启用
+# enable: true
+log:
+    # 是否启用
+    enable: true
+    # 打印执行时间
+    printProcessTime: false
+    # 请求输出总开关
+    printRequest: true
+    # 打印请求体
+    printRequestBody: true
+    # 打印请求头
+    printHeaders: true
+    # 打印路径参数
+    printUriVars: true
+    # 打印请求参数
+    printParam: true
+    # 打印Session（需配置`printSessionKey`）
+    printSession: true
+    # 打印哪些SessionKey
+    # printSessionKey:
+    #     - Content-Type
+    # 响应输出总开关
+    printResponse: true
+    # 打印响应头
+    printResponseHeaders: true
+    # 打印响应体
+    printResponseBody: true
+request:
+    # 请求映射路径,支持相对路径或绝对路径
+    # 默认取父路径/文件名路径(`.`替换为`/`,`..`替换为`.`)
+    path: "/config/demo"
+    # 请求允许的方法 默认允许所有方法
+    methods:
+        - GET
+    # 限制请求头
+    # headers:
+    #     - Content-Type=application/json
+    # 限制请求参数
+    # params:
+    #     - version=v1
+    # 允许跨域（允许所有）
+    # cors: true
+    # 静态文件模式（仅用于响应组，将该响应组的文件夹与文件视为静态资源）
+    # staticMode: true
+response:
+    # 响应类型（默认自动识别）
+    contentType: application/json
+    # 响应头
+    headers:
+        RTP: 2333
+    # 响应体
+    body: |
+        {
+            "code": 100,
+            "msg": "${envMsg}"
+        }
+    # 环境变量设置
+    envionment:
+        envMsg: "默认响应体"
+
+    # 脚本路径
+    # scriptPath: "../example.get.{id}.js"
+    # 脚本内容（可以在yml中编写简单脚本）
+    # scriptContent: "...."
+    # 处理类型
+    processType: MockJsStr
+    # 是否加载Axios异步请求库(仅适用于 processType=JS)
+    # jsLoadAxios: true
+
+    # 脚本外部文本资源，自动读取至环境变量（相对当前路径或模块根路径）
+    # 脚本或者外部文本资源的数据大小超过15mb时将跳过读取
+    # externalTextResources:
+    #     data: "./example.txt"
+    # 脚本外部文件资源（只有该列表中的文件允许在脚本响应中以文件形式返回）
+    # externalFileResources:
+    #     data: "./example.txt"
+
+    # 文件路径(仅适用于 processType=File)
+    # filePath: "./example.txt"
+    # 下载文件名(仅适用于 processType=File)
+    # downloadFileName: "example.txt"
+    # 响应类型自适应 (仅适用于 processType=File)
+    # fileContentTypeAuto: true

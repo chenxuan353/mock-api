@@ -1,0 +1,14 @@
+server:
+  port: 8990
+
+spring:
+  application:
+    name: Mock
+  config:
+    import:
+      - optional:file:./config/mock.yml
+
+mock:
+  build:
+    version: @project.version@
+    time: @timestamp@

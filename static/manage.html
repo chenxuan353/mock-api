@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mock - 管理</title>
+    <link rel="stylesheet" href="vendor/element-ui@2.15.14/index.css">
+    <link rel="stylesheet" href="css/normal.css">
+</head>
+
+<body>
+    <div id="app">
+        <div class="contentBox">
+            <div :style="'visibility: visible;'" style="visibility: hidden;">
+                <div><el-button type="danger" @click="reloadMockConfirm">重新加载Mock</el-button></div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="vendor/vue@2.7.16/vue.js"></script>
+<script src="vendor/element-ui@2.15.14/index.js"></script>
+<script src="vendor/axios@1.7.7/axios.min.js"></script>
+<script>
+    axios.defaults.headers.common['MockVersion'] = "v1";
+    new Vue({
+        el: '#app',
+        data() {
+            return {
+
+            };
+        },
+        mounted() {
+
+        },
+        methods: {
+            reloadMockConfirm() {
+                this.$confirm('确认重新加载Mock?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    this.reloadMock();
+                });
+            },
+            reloadMock() {
+                console.log("reloadMock");
+                const loading = this.$loading({
+                    lock: true,
+                    text: '正在重载Mock...',
+                    spinner: 'el-icon-loading',
+                    background: 'rgba(0, 0, 0, 0.7)'
+                });
+                axios.post('/mock/module/reloadModules').then((response) => {
+                    loading.close();
+                    if (!response.data) {
+                        console.error("get /mock/module/reloadModules", response);
+                        this.$alert('重新加载Mock时异常', '响应有问题', {
+                            confirmButtonText: '确定'
+                        });
+                        return;
+                    }
+                    if (!response.data.code != '0') {
+                        console.error("get /mock/module/reloadModules", response);
+                        this.$alert('重新加载Mock时异常：' + response.data.msg, '请求异常', {
+                            confirmButtonText: '确定'
+                        });
+                        return;
+                    }
+                    this.$alert('重载完成，载入' + response.data.data.length + '个模块', '重载完成', {
+                        confirmButtonText: '确定'
+                    });
+                }).catch((error) => {
+                    loading.close();
+                    console.error("get /mock/module/reloadModules", error);
+                    this.$alert('重新加载Mock时异常', '报错了', {
+                        confirmButtonText: '确定'
+                    });
+                });
+            }
+        },
+    })
+</script>
+<style>
+    .contentBox {
+        width: "100%";
+        padding: 30px;
+        background-color: white;
+        min-height: 300px;
+    }
+</style>
+
+</html>

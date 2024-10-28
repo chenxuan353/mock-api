@@ -1,0 +1,8 @@
+name: 下载文件的示例
+des: 下载指定文件
+response:
+    processType: File
+    # 文件路径(仅适用于 processType=File)
+    filePath: "./demo.js"
+    # 下载文件名(仅适用于 processType=File)
+    downloadFileName: "example.txt"

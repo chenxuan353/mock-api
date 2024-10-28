@@ -1,0 +1,25 @@
+{
+	"code": "0",
+	"msg": "OK~",
+	"data": [{
+		"title": "模块",
+		"icon": "el-icon-menu",
+		"bindKey": "module",
+		"path": "module.html"
+	}, {
+		"title": "详情",
+		"icon": "el-icon-cpu",
+		"bindKey": "info",
+		"path": "info.html"
+	}, {
+		"title": "管理",
+		"icon": "el-icon-s-operation",
+		"bindKey": "manage",
+		"path": "manage.html"
+	}, {
+		"title": "关于",
+		"icon": "el-icon-s-promotion",
+		"bindKey": "about",
+		"path": "about.html"
+	}]
+}

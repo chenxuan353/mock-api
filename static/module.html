@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mock - 模块</title>
+    <link rel="stylesheet" href="vendor/element-ui@2.15.14/index.css">
+    <link rel="stylesheet" href="css/normal.css">
+</head>
+
+<body>
+    <div id="app">
+        <div class="mainBox">
+            <div :style="'visibility: visible;'" style="visibility: hidden;">
+                <el-row>
+                    <el-col :span="8" v-for="module in modules" :key="module.name">
+                        <div style="margin: 5px;">
+                            <el-card class="box-card" shadow="hover" :style="module.active?'border-color:red':''">
+                                <div slot="header" class="clearfix">
+                                    <span>{{ module.displayName }} - {{ module.name }}</span>
+                                    <el-button type="primary" size="small" style="float: right;margin-top: -5px;" plain
+                                        :disabled="module.active" @click="activeModule(module)">{{
+                                        module.active?'运行':'激活'
+                                        }}</el-button>
+                                </div>
+                                <div class="text item cardItemPath">
+                                    {{ module.des }}
+                                </div>
+                                <div class="text item cardItemDes">
+                                    <el-tag type="success">{{ module.path }}</el-tag>
+                                </div>
+                            </el-card>
+                        </div>
+                    </el-col>
+                </el-row>
+            </div>
+
+        </div>
+    </div>
+</body>
+<script src="vendor/vue@2.7.16/vue.js"></script>
+<script src="vendor/element-ui@2.15.14/index.js"></script>
+<script src="vendor/axios@1.7.7/axios.min.js"></script>
+<script>
+    axios.defaults.headers.common['MockVersion'] = "v1";
+    new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                modules: []
+            }
+        },
+        methods: {
+            activeModule(module) {
+                console.log("activeModule", module);
+                const loading = this.$loading({
+                    lock: true,
+                    text: '激活模块中...',
+                    spinner: 'el-icon-loading',
+                    background: 'rgba(0, 0, 0, 0.7)'
+                });
+                axios.post('/mock/module/activeModule', {
+                    moduleName: module.name,
+                }, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                }).then((response) => {
+                    loading.close();
+                    if (!response.data) {
+                        console.error("get /mock/module/activeModule", response);
+                        this.$alert('请求模块列表时异常', '响应有问题', {
+                            confirmButtonText: '确定'
+                        });
+                        return;
+                    }
+                    if (!response.data.code != '0') {
+                        console.error("get /mock/module/activeModule", response);
+                        this.$alert('请求模块列表时异常：' + response.data.msg, '请求异常', {
+                            confirmButtonText: '确定'
+                        });
+                        return;
+                    }
+                    this.modules = response.data.data;
+                    this.reloadModuleList();
+                }).catch((error) => {
+                    loading.close();
+                    console.error("get /mock/module/activeModule", error);
+                    this.$alert('请求模块列表时异常', '报错了', {
+                        confirmButtonText: '确定'
+                    });
+                });
+            },
+            reloadModuleList() {
+                console.log("reloadModuleList");
+                const loading = this.$loading({
+                    lock: true,
+                    text: '加载中...',
+                    spinner: 'el-icon-loading',
+                    background: 'rgba(0, 0, 0, 0.7)'
+                });
+                axios.get('/mock/module/modulesList').then((response) => {
+                    loading.close();
+                    if (!response.data) {
+                        console.error("get /mock/module/modulesList", response);
+                        this.$alert('请求模块列表时异常', '响应有问题', {
+                            confirmButtonText: '确定'
+                        });
+                        return;
+                    }
+                    if (!response.data.code != '0') {
+                        console.error("get /mock/module/modulesList", response);
+                        this.$alert('请求模块列表时异常：' + response.data.msg, '请求异常', {
+                            confirmButtonText: '确定'
+                        });
+                        return;
+                    }
+                    this.modules = response.data.data;
+                }).catch((error) => {
+                    loading.close();
+                    console.error("get /mock/module/modulesList", error);
+                    this.$alert('请求模块列表时异常', '报错了', {
+                        confirmButtonText: '确定'
+                    });
+                });
+            }
+        },
+        mounted() {
+            this.reloadModuleList();
+        },
+    })
+</script>
+<style>
+    .mainBox {
+        padding: 0 10px;
+    }
+
+    .cardItemDes {
+        font-size: 13px;
+        margin: 2px 0;
+    }
+
+    .cardItemPath {
+        font-size: 13px;
+        margin: 2px 0;
+    }
+</style>
+
+</html>

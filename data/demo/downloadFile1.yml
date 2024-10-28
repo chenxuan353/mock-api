@@ -1,0 +1,9 @@
+name: 下载文件的示例2
+des: 下载指定文件
+response:
+    scriptContent: |
+        console.log(externalFileResources)
+        respHelper.download("demo");
+    processType: JS
+    externalFileResources:
+        demo: "demo.js"

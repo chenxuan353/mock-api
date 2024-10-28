@@ -1,0 +1,8 @@
+{
+    "code": "0",
+    "msg": "OK!",
+    "data": {
+        "loginUser": "chenxuan353",
+        "loginRole": ["Admin", "User"]
+    }
+}

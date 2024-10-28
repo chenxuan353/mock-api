@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mock - 管理</title>
+    <link rel="stylesheet" href="vendor/element-ui@2.15.14/index.css">
+    <link rel="stylesheet" href="css/normal.css">
+</head>
+
+<body>
+    <div id="app">
+        <div class="contentBox">
+            <div :style="'visibility: visible;'" style="visibility: hidden;">
+                <h1>关于</h1>
+                <p>关于什么呢？</p>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="vendor/vue@2.7.16/vue.js"></script>
+<script src="vendor/element-ui@2.15.14/index.js"></script>
+<script src="vendor/axios@1.7.7/axios.min.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data() {
+            return {
+
+            };
+        },
+        mounted() {
+
+        },
+        methods: {
+
+        },
+    })
+</script>
+<style>
+    .contentBox {
+        width: "100%";
+        padding: 30px;
+        background-color: white;
+        min-height: 300px;
+    }
+</style>
+</html>

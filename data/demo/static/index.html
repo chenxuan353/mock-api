@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mock - Demo</title>
+    <link rel="stylesheet" href="vendor/element-ui@2.15.14/index.css">
+    <link rel="stylesheet" href="css/normal.css">
+</head>
+
+<body>
+    <div id="app">
+        <el-container>
+            <el-header><strong>Mock</strong></el-header>
+            <el-main>
+                <div class="contentBox">
+                    <div :style="'visibility: visible;'" style="visibility: hidden;">
+                        <h1>简单的示例</h1>
+                        <p>在静态资源的模式下，文件夹里所有数据都被当作静态资源。</p>
+                        <p>你可以在 <a href="register.html">注册表</a> 页里查看示例包含的路径</p>
+                    </div>
+                </div>
+            </el-main>
+        </el-container>
+    </div>
+</body>
+<script src="vendor/vue@2.7.16/vue.js"></script>
+<script src="vendor/element-ui@2.15.14/index.js"></script>
+<script src="vendor/axios@1.7.7/axios.min.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data() {
+            return {
+
+            };
+        },
+        mounted() {
+
+        },
+        methods: {
+
+        },
+    })
+</script>
+<style>
+    .el-header {
+        background-color: #B3C0D1;
+        color: #333;
+        line-height: 60px;
+    }
+
+    body {
+        background-color: #E9EEF3;
+    }
+
+    .contentBox {
+        width: "100%";
+        padding: 30px;
+        background-color: white;
+        min-height: 300px;
+    }
+</style>
+
+</html>
