@@ -3,6 +3,7 @@ package com.chenxuan353.mock.core.filewatch;
 import cn.hutool.core.io.FileUtil;
 import com.chenxuan353.mock.config.MockConfig;
 import com.chenxuan353.mock.core.component.MockGroup;
+import com.chenxuan353.mock.core.exception.MockNotDirectoryException;
 import com.chenxuan353.mock.core.service.MockCoreService;
 import com.chenxuan353.mock.core.service.MockResourceMappingService;
 import jakarta.annotation.PostConstruct;
@@ -66,7 +67,20 @@ public class FileChangeService {
             log.info("数据目录变化监听未开启！");
             return;
         }
+        final String dataPath = mockCoreService.getDataPath();
         final File dataDir = new File(mockCoreService.getDataPath());
+        if (!dataDir.isDirectory()) {
+            if (MockConfig.DEFAULT_DATA_PATH.equals(dataPath) && !dataDir.exists()) {
+                boolean ignore = dataDir.mkdirs();
+                if (dataDir.isDirectory()) {
+                    log.info("数据文件夹创建成功：{}", FileUtil.getAbsolutePath(dataDir));
+                } else {
+                    throw new MockNotDirectoryException("数据文件夹创建失败！当前值：" + dataPath + " | 绝对路径：" + FileUtil.getAbsolutePath(dataDir));
+                }
+            } else {
+                throw new MockNotDirectoryException("数据文件夹必须是合法的目录！当前值：" + dataPath + " | 绝对路径：" + FileUtil.getAbsolutePath(dataDir));
+            }
+        }
         if (!dataDir.isDirectory()) {
             log.warn("数据目录变化监听失败，数据目录不合法！");
             return;
