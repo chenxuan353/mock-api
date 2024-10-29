@@ -72,6 +72,8 @@ http://localhost:8990/static/index.html
 http://localhost:8990/mock/static/index.html
 ```
 
+多模块共享的静态资源也可以放到`static`文件夹里
+
 ## 引擎摘要
 
 ### Javascript - GraalJs
@@ -116,6 +118,8 @@ for(i = 0; i < list.size(); i++){
 ## 使用文档
 
 ### 数据文件夹结构
+
+所有配置文件均存在默认值，可以不提供。
 
 - `global-mock.yml` - 全局设置
 - 模块A
