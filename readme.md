@@ -74,6 +74,77 @@ http://localhost:8990/mock/static/index.html
 
 多模块共享的静态资源也可以放到`static`文件夹里
 
+## 用例
+
+### Json响应
+
+运行目录生成的data目录下创建文件
+
+`login.info.json`
+
+```json
+{
+    "code": "0",
+    "msg": "OK!",
+    "data": {
+    "loginUser": "chenxuan353",
+    "loginRole": ["Admin", "User"]
+    }
+}
+```
+
+好，访问看看效果吧
+
+```text
+http://localhost:8990/login/info
+```
+
+### 脚本响应
+
+还是在data目录下创建文件
+
+`get.{id}.js`
+
+```javascript
+({
+    id: pathVariable.get('id'),
+    "name": "@cname",
+    "des|1-10": "★",
+    "birthday":'@date("yyyy-MM-dd")',
+    "msg": "当JS文件以`({`起始`)}`结束时，会自动进行Mock处理。否则当作支持JS文件运行。"
+})
+
+```
+
+`del.{id}.js`
+
+```javascript
+id = pathVariable.get('id');
+
+if(id in [1,2,10,15]){
+    return {
+        "code": 0,
+        "msg": "删除成功",
+        "des": "这下成功了，[1,2,10,15]都能触发成功。"
+    };
+}
+
+return {
+    "code": 404,
+    "msg": "用户不存在",
+    "des": "这是模拟JS脚本动态处理，试试 /user/del/1"
+};
+```
+
+OK，你现在创建了两个基于JS脚本的模拟API。
+
+```text
+http://localhost:8990/get/{id}
+http://localhost:8990/del/{id}
+```
+
+快访问试试罢。
+
 ## 引擎摘要
 
 ### Javascript - GraalJs
