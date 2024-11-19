@@ -80,10 +80,12 @@ public class MockResourceMappingService {
                     .addResourceLocations("file:" + resourceLocationsDealed);
         }
 
-        final Map<String, ?> additionalUrlMap = ReflectUtil
-                .<SimpleUrlHandlerMapping>invoke(resourceHandlerRegistry, "getHandlerMapping").getUrlMap();
-
-        ReflectUtil.<Void>invoke(resourceHandlerMapping, "registerHandlers", additionalUrlMap);
+        SimpleUrlHandlerMapping getHandlerMapping = ReflectUtil
+                .invoke(resourceHandlerRegistry, "getHandlerMapping");
+        if(getHandlerMapping != null){
+            final Map<String, ?> additionalUrlMap = getHandlerMapping.getUrlMap();
+            ReflectUtil.<Void>invoke(resourceHandlerMapping, "registerHandlers", additionalUrlMap);
+        }
         nowResourceMapping = resourceMapping;
     }
 

@@ -10,22 +10,9 @@
 	</parent>
 	<groupId>com.chenxuan353</groupId>
 	<artifactId>mock</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<name>Mock</name>
 	<description>一个简单的Mock服务</description>
-	<url/>
-	<licenses>
-		<license/>
-	</licenses>
-	<developers>
-		<developer/>
-	</developers>
-	<scm>
-		<connection/>
-		<developerConnection/>
-		<tag/>
-		<url/>
-	</scm>
 	<properties>
 		<hutool.version>5.8.32</hutool.version>
 		<graalvm.version>24.1.1</graalvm.version>
